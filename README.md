@@ -1,29 +1,24 @@
-# Foobar
+# Project idea
 
-Foobar is a Python library for dealing with word pluralization.
+Our idea is to create an application that allows the user to create, categorise and view recipes. From these recipes the user can create shopping lists that can be grouped with menus. 
 
-## Installation
+## Packages
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+We are planning to use the angular material package for styling and @ngrx/store for redux state management.    
 
-```bash
-pip install foobar
-```
+## Functionality
 
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+Core functionality:
+Navigation
+Sidebar with tabs for every functionality
+Recipes
+Create recipe and choose which recipe category it belongs to
+View all recipes by category
+Option to add image of the recipe
+Menu
+Create a menu by choosing recipes that will be included in it.
+Add ingredients to shopping list from recipe by choosing portions and ingredients that need to be bought
+View shopping list 
+Nice-to-have:
+Send shopping list for the week to a specified email address 
+Calendar with recipes on specific dates
