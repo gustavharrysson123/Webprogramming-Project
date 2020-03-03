@@ -26,7 +26,7 @@ import { DummyComponent } from './dummy/dummy.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ recipes: reducer })
+    StoreModule.forRoot({ recipes: reducer }),
     BrowserAnimationsModule,
     MatSidenavModule,
     MatMenuModule,
