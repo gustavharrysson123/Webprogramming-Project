@@ -1,7 +1,7 @@
 import { Ingredient } from '../models/ingredient';
 
 export interface Recipe {
-    id: number;
+    id: string;
     recipeInfo: {
       name: string;
       defaultPortions: number;
