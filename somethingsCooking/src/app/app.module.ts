@@ -17,11 +17,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { DummyComponent } from './dummy/dummy.component';
+import { StoreTestComponent } from './store-test/store-test.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    DummyComponent
+    DummyComponent,
+    StoreTestComponent
   ],
   imports: [
     BrowserModule,
