@@ -1,27 +1,9 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="Recipes">Recipes</a>
-      <a mat-list-item routerLink="Menus">Menus</a>
-      <a mat-list-item routerLink="Shopping_List">Shopping List</a>
-      <a mat-list-item routerLink="Store_Test">Store Test</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>somethingsCooking</span>
-    </mat-toolbar>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<mat-toolbar color="primary">
+  <span><mat-icon>local_dining</mat-icon> Something's Cookin'</span>
+  <div class="spacer"> </div>
+      <a mat-button routerLink="Recipes">Recipes</a>
+      <a mat-button routerLink="Menus">Menus</a>
+      <a mat-button routerLink="Shopping_List">Shopping List</a>
+      <a mat-button routerLink="Store_Test">Store Test</a>
+
+</mat-toolbar>
