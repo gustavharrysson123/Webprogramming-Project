@@ -16,14 +16,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { DummyComponent } from './dummy/dummy.component';
 import { StoreTestComponent } from './store-test/store-test.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { AddItemComponent } from './components/add-item/add-item.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DummyComponent,
-    StoreTestComponent
+    StoreTestComponent,
+    ShoppingListComponent,
+    AddItemComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,11 @@ import { StoreTestComponent } from './store-test/store-test.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
