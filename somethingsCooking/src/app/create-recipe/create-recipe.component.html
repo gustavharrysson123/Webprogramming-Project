@@ -1,0 +1,41 @@
+<h1>Create recipe</h1>
+
+<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+
+    <label>
+        Recipe Name: <input formControlName="recipeName" />
+    </label>
+    <label>
+        Portions: <input formControlName="defaultPortions" />
+    </label>
+    <label>
+        Category: <input formControlName="category" />
+    </label>
+    <h2>Ingredients</h2>
+
+    <div formArrayName="ingredients">
+        <div    *ngFor="let item of ingredients.controls; let ingredientIndex=index" >
+                Ingredient:
+                <!-- <input formControlName="point" /> -->
+                <div [formGroupName]="ingredientIndex" >
+                    <label>
+                        Quantity:
+                        <input type="text" formControlName="quantity">
+                    </label>
+                    <label>
+                        Unit:
+                        <input type="text" formControlName="unit">
+                    </label>
+                    <label>
+                        Name:
+                        <input type="text" formControlName="name">
+                    </label>
+                </div>
+            <button type="button" (click)="deleteIngredient(ingredientIndex)">Delete ingredient</button>
+        </div>
+        <button type="button" (click)="addIngredient()">Add ingredient</button>
+    </div>
+    <button type="submit" [disabled]="!recipeForm.valid">Submit</button>
+</form>
+
+{{ this.recipeForm.value | json }}

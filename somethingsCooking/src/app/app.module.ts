@@ -24,6 +24,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 //import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 
 
 
@@ -34,7 +35,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NavbarComponent,
     DummyComponent,
     StoreTestComponent,
-    ViewRecipeComponent
+    ViewRecipeComponent,
+    CreateRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatListModule,
     MatDialogModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
