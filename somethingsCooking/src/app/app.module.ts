@@ -23,6 +23,7 @@ import { StoreTestComponent } from './store-test/store-test.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
 import { AddItemComponent } from './components/add-item/add-item.component';
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AddItemComponent } from './components/add-item/add-item.component';
     MatTableModule,
     MatFormFieldModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
