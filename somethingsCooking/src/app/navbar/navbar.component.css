@@ -1,0 +1,21 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.mat-button {
+  font-size: 15px;
+}
+.mat-icon {
+  transform: scale(2);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
