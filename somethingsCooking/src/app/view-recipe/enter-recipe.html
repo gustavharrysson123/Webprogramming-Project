@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>Create a Recipe</h1>
+
+<div mat-dialog-content>
+
+
+
+
+
+ 
+  <form>
+    <input matInput  placeholder="Recipe Name"> 
+  </form><br/>  
+
+  <span  class="nullable">
+    <select name="categorySelect" ng-model="data.category">
+      <option value="">Choose Category</option>
+      <option value="Appetizers">Appetizers</option>
+      <option value="Main Dishes">Main Dishes</option>
+      <option value="Desserts">Desserts</option>
+      <option value="Breads">Breads</option>
+      <option value="Beverages">Beverages</option>
+      <option value="Other">Other</option>
+    </select>
+  </span>
+
+
+  <span  class="nullable">
+    <select name="peopleSelect" ng-model="data.numberOfPeople">
+      <option value=0>Number of People</option>
+      <option value=2>2</option>
+      <option value=4>4</option>
+      <option value=6>6</option>
+      <option value=8>8</option>
+    </select>
+  </span><br/>
+
+  <p> </p>
+  <p>Add Ingredients</p>
+
+
+  <form>
+    <input matInput placeholder="Amount" value=''>
+
+    <input matInput placeholder="Unit" value=''>
+
+    <input matInput placeholder="Ingredient Name" value=''>
+
+  </form>
+
+  <p> </p>
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="add()">Add Ingredient</button>
+</div>
+
+<p> </p>
+
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="primary" (click)="close()">Close</button>
+  <button mat-raised-button color="primary" (click)="save()">Save</button>
+</div>
