@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { Store, select } from '@ngrx/store'
+import { Observable } from 'rxjs';
+import { Recipe } from '../models/recipe';
+import { Ingredient } from '../models/ingredient';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-create-recipe',
@@ -7,8 +12,10 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
   styleUrls: ['./create-recipe.component.css']
 })
 export class CreateRecipeComponent implements OnInit {
-
-  constructor(private fb: FormBuilder) { }
+  recipes$: Observable<[Recipe]>;
+  constructor(private fb: FormBuilder, private store: Store<{ recipes: [Recipe] }>) {
+    this.recipes$ = store.pipe(select('recipes'));
+   }
 
   recipeForm: FormGroup;
   ingredientGroup: FormGroup;
@@ -46,6 +53,30 @@ export class CreateRecipeComponent implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.recipeForm.value);
+    let formValue = this.recipeForm.value;
+    let ingredients = formValue.ingredients.map(ingredient => 
+      <Ingredient> {
+        id: uuid.v4(),
+        ingredientInfo: {
+          name: ingredient.name,
+          unit: ingredient.unit,
+          quantity: ingredient.quantity
+      }});
+    let recipe = <Recipe> {
+      id: uuid.v4(),
+      recipeInfo: {
+        name: formValue.recipeName,
+        defaultPortions: formValue.defaultPortions,
+        category: formValue.category,
+        ingredients: ingredients
+      }
+    }
+    console.warn(recipe)
+    this.store.dispatch({type: "[RecipeList] Add Recipe", recipe: {recipe}})
+    this.store.pipe().subscribe(
+      (data:any) => {
+      
+      console.warn(data) //your data shows here
+      });
   }
 }

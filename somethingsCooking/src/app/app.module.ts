@@ -4,13 +4,13 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { reducer } from './store/recipeList.reducer';
+import { reducers } from './store/index';
 import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -20,11 +20,13 @@ import { MatListModule } from '@angular/material/list';
 import { DummyComponent } from './dummy/dummy.component';
 import { StoreTestComponent } from './store-test/store-test.component';
 
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 //import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment'; // Angular CLI environment
 
 
 
@@ -41,7 +43,7 @@ import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ recipes: reducer }),
+    StoreModule.forRoot(reducers),
     BrowserAnimationsModule,
     MatSidenavModule,
     MatMenuModule,
@@ -53,7 +55,14 @@ import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
     MatDialogModule,
     MatSelectModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers),
+    // Instrumentation must be imported after importing StoreModule (config is optional)
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
