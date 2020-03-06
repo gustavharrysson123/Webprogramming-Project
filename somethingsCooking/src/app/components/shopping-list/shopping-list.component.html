@@ -14,7 +14,11 @@
         <input matInput #amountInput>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="addItem($event, nameInput.value, amountInput.value)"> Add </button>
+      <button mat-raised-button color="primary" (click)="addItem($event, nameInput.value, amountInput.value); nameInput.value = ''; amountInput.value = ''"> Add </button>
+      <mat-form-field class="example-full-width">
+          <mat-label>Shopp</mat-label>
+          <input matInput #amountInput>
+        </mat-form-field>
       <button mat-raised-button color="accent" (click)="saveList($event)"> Save </button>
 
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
