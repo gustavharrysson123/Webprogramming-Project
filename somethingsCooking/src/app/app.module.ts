@@ -5,13 +5,12 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers } from './store/index';
-import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTableModule } from '@angular/material/table'; 
+import { MatTableModule } from '@angular/material/table';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -39,7 +38,6 @@ import { ViewRecipesComponent } from './view-recipes/view-recipes.component'; //
     NavbarComponent,
     DummyComponent,
     StoreTestComponent,
-    ViewRecipeComponent,
     CreateRecipeComponent,
     ViewRecipesComponent
   ],
