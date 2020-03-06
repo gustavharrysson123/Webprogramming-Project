@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table'; 
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -26,7 +27,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment'; // Angular CLI environment
+import { environment } from '../environments/environment';
+import { ViewRecipesComponent } from './view-recipes/view-recipes.component'; // Angular CLI environment
 
 
 
@@ -38,7 +40,8 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
     DummyComponent,
     StoreTestComponent,
     ViewRecipeComponent,
-    CreateRecipeComponent
+    CreateRecipeComponent,
+    ViewRecipesComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
     MatSidenavModule,
     MatMenuModule,
     LayoutModule,
+    MatTableModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
