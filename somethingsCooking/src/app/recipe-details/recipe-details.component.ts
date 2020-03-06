@@ -21,6 +21,7 @@ import {MatButtonModule} from '@angular/material/button';
 export class RecipeDetailsComponent implements OnInit {
   recipe;
   ingredientsData;
+  portionSelect;
   ingredientForm;
 
   constructor(
@@ -29,12 +30,13 @@ export class RecipeDetailsComponent implements OnInit {
     private formBuilder: FormBuilder) {
     this.ingredientForm = this.formBuilder.group({
       ingredients: new FormArray([]),
+      portionSelect: new FormControl(Number)
     });
 
     
   }
 
-  private addCheckboxes() {
+  private initializeForm() {
     this.ingredientsData.forEach((o, i) => {
       const control = new FormControl(true); 
       (this.ingredientForm.controls.ingredients as FormArray).push(control);
@@ -45,7 +47,12 @@ export class RecipeDetailsComponent implements OnInit {
     const selectedIngredientIds = this.ingredientForm.value.ingredients
       .map((v, i) => v ? this.ingredientsData[i].id : null)
       .filter(v => v !== null);
-    console.warn(selectedIngredientIds);
+    const selectedIngredients = this.recipe.recipeInfo.ingredients.
+      filter( ingredient => selectedIngredientIds.includes(ingredient.id))
+    const selectedPortions = this.ingredientForm.value.portionSelect;
+    const portionFactor = selectedPortions / this.recipe.recipeInfo.defaultPortions;
+    console.warn(selectedIngredients);
+    console.warn("portionFactor: " + portionFactor);
     //TODO: Add store functionality for shpoping list and dispatch an action from here that updates the store
   }
 
@@ -56,7 +63,7 @@ export class RecipeDetailsComponent implements OnInit {
         if (recipes) {
           this.recipe = Array.from(recipes["recipes"]).filter(recipe => recipe["recipe"].id === recipeId)[0]["recipe"];
           this.ingredientsData = this.recipe.recipeInfo.ingredients;
-          this.addCheckboxes();
+          this.initializeForm();
         }
       });
     });
