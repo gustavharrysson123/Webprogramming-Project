@@ -5,19 +5,20 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers } from './store/index';
-import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table'; 
+import { MatInputModule } from '@angular/material/input';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DummyComponent } from './dummy/dummy.component';
 import { StoreTestComponent } from './store-test/store-test.component';
 
@@ -28,7 +29,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { ViewRecipesComponent } from './view-recipes/view-recipes.component'; // Angular CLI environment
+import { ViewRecipesComponent } from './view-recipes/view-recipes.component';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 
 
 
@@ -39,9 +41,9 @@ import { ViewRecipesComponent } from './view-recipes/view-recipes.component'; //
     NavbarComponent,
     DummyComponent,
     StoreTestComponent,
-    ViewRecipeComponent,
     CreateRecipeComponent,
-    ViewRecipesComponent
+    ViewRecipesComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,11 +53,15 @@ import { ViewRecipesComponent } from './view-recipes/view-recipes.component'; //
     MatSidenavModule,
     MatMenuModule,
     LayoutModule,
+    FormsModule,
     MatTableModule,
+    MatInputModule,
+    MatCheckboxModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatListModule,
+    
     MatDialogModule,
     MatSelectModule,
     MatFormFieldModule,
