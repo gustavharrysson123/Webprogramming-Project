@@ -1,6 +1,7 @@
-import { ShoppingListItem } from '../models/ingredient';
+import { Ingredient } from '../models/ingredient';
 
 export interface ShoppingList {
-  ShoppingList : List[ShoppingListItem[]];
+  id: string;
   name: string;
+  ShoppingList : Ingredient[];
 }

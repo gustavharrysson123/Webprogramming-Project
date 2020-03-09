@@ -71,7 +71,6 @@ export class CreateRecipeComponent implements OnInit {
         ingredients: ingredients
       }
     }
-    console.warn(recipe)
     this.store.dispatch({type: "[RecipeList] Add Recipe", recipe: {recipe}})
     this.store.pipe().subscribe(
       (data:any) => {

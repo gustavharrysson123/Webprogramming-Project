@@ -11,9 +11,7 @@ export const initialState = {
 };
 
 const _recipeListReducer = createReducer(initialState,
-  on(addRecipe, (state, { recipe }) => ({
-    recipes:  [recipe,...state.recipes]
-  })),
+  on(addRecipe, (state, { recipe }) => ({ recipes:  [recipe,...state.recipes] })),
   on(removeRecipe, (state, { id }) => ({ recipes: state.recipes.filter(recipe => recipe.id !== id) }))
 );
 

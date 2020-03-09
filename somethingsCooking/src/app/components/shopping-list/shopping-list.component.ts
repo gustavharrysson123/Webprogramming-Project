@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { ShoppingListItem } from '../../models/shoppinglistitem';
+import { Ingredient } from '../../models/ingredient';
+import { ShoppingList } from '../../models/shoppinglist';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { fetchLists } from '../../store/selectors/shopping.selector';
+import { State } from '../../store/reducers/shopping.reducer';
 
-let ELEMENT_DATA: ShoppingListItem[] = [
-  {name: 'Tomatoes', amount: "5"},
-  {name: 'Onions', amount: "2"},
-  {name: 'Pasta', amount: "1 Kg"},
-  {name: 'Milk', amount: "2 cartons"},
-];
+
+
+
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,26 +17,37 @@ let ELEMENT_DATA: ShoppingListItem[] = [
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-
+  shoppingLists$: Observable<Array<ShoppingList>>
   displayedColumns: string[] = ['name', 'amount'];
-  dataSource = ELEMENT_DATA;
-  SHOPPINGLIST = []
+  ELEMENT_DATA = [];
+  dataSource = this.ELEMENT_DATA;
 
   @ViewChild(MatTable,{static:true}) table: MatTable<any>;
-  constructor() { }
+  constructor(private store: Store<State>) { }
 
-  public addItem(event, names, amounts){
-    ELEMENT_DATA.push({name: names, amount: amounts});
-    this.dataSource = ELEMENT_DATA;
+  public addItem(event, names, amounts, units){
+    this.ELEMENT_DATA.push({id: '1', ingredientInfo: {name: names, quantity: amounts, unit: units}},);
+    this.dataSource = this.ELEMENT_DATA;
     this.table.renderRows();
 
   }
   public saveList(event, names){
-    this.SHOPPINGLIST.push({ShoppingList: ELEMENT_DATA, name: names});
-    alert(this.SHOPPINGLIST)
+    this.store.dispatch({type: "[ShoppingList] Save List", shoppinglist: {ShoppingList: this.ELEMENT_DATA, name: names, id: "1"}})
+    this.shoppingLists$ = this.store.select(store => store.shoppinglists);
+    alert(this.shoppingLists$);
+
+    this.ELEMENT_DATA = [];
+    this.dataSource = this.ELEMENT_DATA;
+    this.table.renderRows();
+
   }
 
   ngOnInit(): void {
+    this.store.pipe(select(fetchLists)).subscribe( arr => {
+      this.recipes =  arr;
+
+      this.dataSource = new MatTableModule(this.recipes.recipes);
+    });
   }
 
 }

@@ -14,7 +14,12 @@
         <input matInput #amountInput>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="addItem($event, nameInput.value, amountInput.value); nameInput.value = ''; amountInput.value = ''"> Add </button>
+    <mat-form-field class="example-full-width">
+        <mat-label>Unit</mat-label>
+        <input matInput #unitInput>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="addItem($event, nameInput.value, amountInput.value, unitInput.value); nameInput.value = ''; amountInput.value = ''; unitInput.value = ''"> Add </button>
 
 
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -23,13 +28,13 @@
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.ingredientInfo.name}} </mat-cell>
       </ng-container>
 
       <!-- Amount Column -->
       <ng-container matColumnDef="amount">
         <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.ingredientInfo.quantity}} {{element.ingredientInfo.unit}} </mat-cell>
       </ng-container>
 
 
@@ -47,10 +52,10 @@
 
     <mat-tab label="View">
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let list of SHOPPINGLIST">
+        <mat-expansion-panel *ngFor="let list of dataSource">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{list.name}}
+              {{list.name}} fdksj
             </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-table [dataSource]=list.ShoppingList class="mat-elevation-z8">
@@ -59,13 +64,13 @@
             <!-- Name Column -->
             <ng-container matColumnDef="name">
               <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+              <mat-cell *matCellDef="let element"> {{element.ingredientInfo.name}} </mat-cell>
             </ng-container>
 
             <!-- Amount Column -->
             <ng-container matColumnDef="amount">
               <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+              <mat-cell *matCellDef="let element"> {{element.ingredientInfo.quantity}} {{element.ingredientInfo.unit}} </mat-cell>
             </ng-container>
 
 

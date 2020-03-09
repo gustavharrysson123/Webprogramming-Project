@@ -23,7 +23,6 @@ export class ViewRecipesComponent implements OnInit {
       this.recipes =  arr;
       
       this.dataSource = new MatTableModule(this.recipes.recipes);
-      console.warn(this.dataSource.data);
     });
   }
 
