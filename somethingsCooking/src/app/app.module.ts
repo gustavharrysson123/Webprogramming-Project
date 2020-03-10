@@ -40,6 +40,7 @@ import { ViewRecipesComponent } from './view-recipes/view-recipes.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { CreateMenuComponent } from './create-menu/create-menu.component';
 import { ViewMenusComponent } from './view-menus/view-menus.component';
+import { MenuDetailsComponent } from './menu-details/menu-details.component';
 
 
 
@@ -56,7 +57,8 @@ import { ViewMenusComponent } from './view-menus/view-menus.component';
     ViewRecipesComponent,
     RecipeDetailsComponent,
     CreateMenuComponent,
-    ViewMenusComponent
+    ViewMenusComponent,
+    MenuDetailsComponent
   ],
   imports: [
     BrowserModule,
