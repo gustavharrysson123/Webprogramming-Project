@@ -2,17 +2,17 @@
 
 
 <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-    
+
     <mat-form-field appearance="fill" >
         <mat-label>Recipe Name</mat-label>
         <input matInput formControlName="recipeName" />
     </mat-form-field>
-    
+
     <mat-form-field appearance="fill">
         <mat-label>Portions</mat-label>
         <input matInput formControlName="defaultPortions" />
     </mat-form-field>
-    
+
     <mat-form-field appearance="fill">
         <mat-label>Category</mat-label>
         <input matInput formControlName="category" />
@@ -20,13 +20,13 @@
 
 
     <h2>Add Image</h2>
-    
+
     <input style="display: none" type="file" (change)="onFileSelected($event)" accept="image/*" #PictureInput />
     <button button mat-stroked-button color="primary" type="button" (click)="PictureInput.click()">Add Picture</button>
     <div>
         <img [src]="imgURL" height="200" *ngIf="imgURL">
     </div>
-    
+
 
 
     <h2>Add Ingredients</h2>
@@ -39,23 +39,22 @@
                     <mat-label>Quantity</mat-label>
                     <input matInput type="text" formControlName="quantity">
                 </mat-form-field>
-                    
+
                 <mat-form-field appearance="fill">
                     <mat-label>Unit</mat-label>
                     <input matInput type="text" formControlName="unit">
                 </mat-form-field>
-                
+
                 <mat-form-field appearance="fill">
                     <mat-label>Ingredient Name</mat-label>
                     <input matInput type="text" formControlName="name">
                 </mat-form-field>
-                
+                <button class="button-spacing"  button mat-icon-button color="warn" type="button" (click)="deleteIngredient(ingredientIndex)"><mat-icon>clear</mat-icon></button>
                 </div>
-            <button button mat-stroked-button color="primary" type="button" (click)="deleteIngredient(ingredientIndex)">Delete ingredient</button>
         </div>
-        <button mat-raised-button color="primary" type="button" (click)="addIngredient()">Add ingredient</button>
+        <button class="button-spacing" mat-raised-button color="primary" type="button" (click)="addIngredient()">Add ingredient</button>
     </div>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!recipeForm.valid">Submit</button>
+    <button class="button-spacing" mat-raised-button color="primary" type="submit" [disabled]="!recipeForm.valid">Submit</button>
 
 </form>
 
