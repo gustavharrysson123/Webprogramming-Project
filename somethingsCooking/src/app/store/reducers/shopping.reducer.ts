@@ -1,19 +1,38 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { saveList } from '../actions/shopping.actions';
 import { ShoppingList } from '../../models/shoppinglist';
+import { ShoppingListAction, ShoppingActionTypes } from '../actions/shopping.actions';
 
-export interface State {
-  shoppinglists: ShoppingList[];
-}
 
-export const initialState = {
-  shoppinglists: []
-};
+export const initialState = [];
 
-const _shoppingListReducer = createReducer(initialState,
-  on(saveList, (state, { shoppinglist }) => ({ shoppinglists: [shoppinglist, ...state.shoppinglists]}))
-);
+export function ShoppingReducer(
+  state: Array<ShoppingList> = initialState,
+  action: ShoppingListAction
+){
+  switch (action.type){
+    case ShoppingActionTypes.SAVE_LIST:
+      return [action.payload, ...state]
+    case ShoppingActionTypes.DELETE_LIST:
+      return state.filter(list => list.id !== action.id)
+    case ShoppingActionTypes.DELETE_ITEM:
+      let temp = [];
+      state.forEach( function(list){
+        if (list.id !== action.listId){
+          temp = [...temp, list];
+        } else{
+          let tempList = [];
+          list.ShoppingList.forEach( function(temp2){
+            if(temp2.id !== action.itemId){
+              tempList = [...tempList, temp2];
+            }
+          })
+          temp = [...temp, {id: list.id, name: list.name, ShoppingList: tempList}];
+        }
+      })
 
-export function reducer(state, action) {
-  return _shoppingListReducer(state, action);
+
+      return temp;
+    default:
+      return state;
+  }
 }

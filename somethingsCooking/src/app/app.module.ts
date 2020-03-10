@@ -4,8 +4,10 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { reducers } from './store/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { RecipeReducer } from './store/recipeList.reducer';
+import { ShoppingReducer } from './store/reducers/shopping.reducer';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -54,7 +56,10 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({
+      recipes: RecipeReducer,
+      shoppingLists: ShoppingReducer
+    }),
     BrowserAnimationsModule,
     MatSidenavModule,
     MatMenuModule,

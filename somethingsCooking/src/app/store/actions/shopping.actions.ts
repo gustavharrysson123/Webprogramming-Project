@@ -1,8 +1,28 @@
-import { createAction, props } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 import { ShoppingList } from '../../models/shoppinglist';
-import { Ingredient } from '../../models/ingredient';
 
-export const saveList = createAction(
-  '[ShoppingList] Save List',
-  props<{ shoppinglist: ShoppingList }>()
-);
+export enum ShoppingActionTypes{
+  SAVE_LIST = '[SHOPPINGLIST] Save List',
+  DELETE_LIST = '[SHOPPINGLIST] Delete List',
+  DELETE_ITEM = '[SHOPPINGLIST] Delete Item',
+}
+
+export class SaveListAction implements Action{
+  readonly type = ShoppingActionTypes.SAVE_LIST;
+
+  constructor(public payload: ShoppingList) {}
+}
+
+export class DeleteListAction implements Action{
+  readonly type = ShoppingActionTypes.DELETE_LIST;
+
+  constructor(public id: string) {}
+}
+
+export class DeleteItemAction implements Action{
+  readonly type = ShoppingActionTypes.DELETE_ITEM;
+
+  constructor(public itemId: string, public listId: string) {}
+}
+
+export type ShoppingListAction = SaveListAction | DeleteListAction | DeleteItemAction;

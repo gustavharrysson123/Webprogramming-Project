@@ -15,6 +15,6 @@ const _recipeListReducer = createReducer(initialState,
   on(removeRecipe, (state, { id }) => ({ recipes: state.recipes.filter(recipe => recipe.id !== id) }))
 );
 
-export function reducer(state, action) {
+export function RecipeReducer(state, action) {
   return _recipeListReducer(state, action);
 }

@@ -5,7 +5,10 @@ import { ShoppingList } from '../../models/shoppinglist';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { fetchLists } from '../../store/selectors/shopping.selector';
-import { State } from '../../store/reducers/shopping.reducer';
+import { SaveListAction, DeleteListAction, DeleteItemAction } from '../../store/actions/shopping.actions';
+import * as uuid from 'uuid';
+
+import { AppState } from '../../store/index';
 
 
 
@@ -18,36 +21,45 @@ import { State } from '../../store/reducers/shopping.reducer';
 })
 export class ShoppingListComponent implements OnInit {
   shoppingLists$: Observable<Array<ShoppingList>>
-  displayedColumns: string[] = ['name', 'amount'];
-  ELEMENT_DATA = [];
-  dataSource = this.ELEMENT_DATA;
+  displayedColumns: string[] = ['name', 'amount', 'actions'];
+  itemList = [];
+  panelOpenState : string = '';
 
-  @ViewChild(MatTable,{static:true}) table: MatTable<any>;
-  constructor(private store: Store<State>) { }
+  constructor(private store: Store<AppState>) {
+  }
 
   public addItem(event, names, amounts, units){
-    this.ELEMENT_DATA.push({id: '1', ingredientInfo: {name: names, quantity: amounts, unit: units}},);
-    this.dataSource = this.ELEMENT_DATA;
-    this.table.renderRows();
+    this.itemList = [...this.itemList, {id: uuid.v4(), ingredientInfo: {name: names, quantity: amounts, unit: units}}];
 
   }
   public saveList(event, names){
-    this.store.dispatch({type: "[ShoppingList] Save List", shoppinglist: {ShoppingList: this.ELEMENT_DATA, name: names, id: "1"}})
-    this.shoppingLists$ = this.store.select(store => store.shoppinglists);
-    alert(this.shoppingLists$);
+    this.store.dispatch(new SaveListAction(
+    {ShoppingList: this.itemList,
+     name: names,
+      id: uuid.v4()}))
 
-    this.ELEMENT_DATA = [];
-    this.dataSource = this.ELEMENT_DATA;
-    this.table.renderRows();
+    this.itemList = [];
 
   }
 
-  ngOnInit(): void {
-    this.store.pipe(select(fetchLists)).subscribe( arr => {
-      this.recipes =  arr;
+  public deleteList(id){
+    this.store.dispatch(new DeleteListAction(id));
 
-      this.dataSource = new MatTableModule(this.recipes.recipes);
-    });
+  }
+  public deleteItem(id){
+    this.itemList = this.itemList.filter(item => item.id !== id);
+
+  }
+
+  public deleteViewItem(itemId, listId){
+    this.panelOpenState = listId;
+    this.store.dispatch(new DeleteItemAction(itemId, listId));
+  }
+
+
+  ngOnInit(): void {
+    this.shoppingLists$ = this.store.select(store => store.shoppingLists);
+
   }
 
 }

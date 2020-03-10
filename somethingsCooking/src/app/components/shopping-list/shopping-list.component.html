@@ -22,7 +22,7 @@
       <button mat-raised-button color="primary" (click)="addItem($event, nameInput.value, amountInput.value, unitInput.value); nameInput.value = ''; amountInput.value = ''; unitInput.value = ''"> Add </button>
 
 
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <mat-table [dataSource]="itemList" class="mat-elevation-z8">
 
 
       <!-- Name Column -->
@@ -35,6 +35,13 @@
       <ng-container matColumnDef="amount">
         <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.ingredientInfo.quantity}} {{element.ingredientInfo.unit}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell  *matHeaderCellDef >  </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="header-align-right">
+          <button mat-icon-button color="warn"  (click)="deleteItem(element.id)"><mat-icon>clear</mat-icon></button>
+        </mat-cell>
       </ng-container>
 
 
@@ -52,12 +59,13 @@
 
     <mat-tab label="View">
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let list of dataSource">
+        <mat-expansion-panel *ngFor="let list of shoppingLists$ | async" [expanded]="panelOpenState===list.id">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{list.name}} fdksj
+              {{list.name}}
             </mat-panel-title>
           </mat-expansion-panel-header>
+
           <mat-table [dataSource]=list.ShoppingList class="mat-elevation-z8">
 
 
@@ -73,14 +81,23 @@
               <mat-cell *matCellDef="let element"> {{element.ingredientInfo.quantity}} {{element.ingredientInfo.unit}} </mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="actions">
+              <mat-header-cell  *matHeaderCellDef >  </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="header-align-right">
+                   <button mat-icon-button color="warn"  (click)="deleteViewItem(element.id, list.id)"><mat-icon>clear</mat-icon></button>
+              </mat-cell>
+            </ng-container>
+
+
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
 
-
+          <mat-action-row>
+            <button mat-raised-button color="warn" (click)="deleteList(list.id)"> Delete </button>
+          </mat-action-row>
         </mat-expansion-panel>
-
       </mat-accordion>
 
 

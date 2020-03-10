@@ -12,11 +12,11 @@ export function getState(state: State): State {
     return state;
 }
 
-export const fetchRecipes = (state: AppState) => {
+export const fetchRecipes = (state: State) => {
     return state.recipes;
 }
 
-export const fetchRecipeDetails = (state: AppState, recipeId: string) => {
+export const fetchRecipeDetails = (state: State, recipeId: string) => {
     return state.recipes;
 }
 
