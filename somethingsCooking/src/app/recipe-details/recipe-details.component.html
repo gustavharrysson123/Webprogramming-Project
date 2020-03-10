@@ -4,23 +4,28 @@
     <div>
         <img [src]="recipe.recipeInfo.image" height="200">
     </div>
-    
+
     portions: {{recipe.recipeInfo.defaultPortions}}<br>
     category: {{recipe.recipeInfo.category}}
 
 
     <form [formGroup]="ingredientForm" (ngSubmit)="submit()">
-            <label 
-              formArrayName="ingredients" 
+            <label
+              formArrayName="ingredients"
               *ngFor="let ingredient of ingredientForm.controls.ingredients.controls; let i = index">
                 <input type="checkbox" [formControlName]="i" />
-                {{ingredientsData[i].ingredientInfo.quantity + " " + 
-                ingredientsData[i].ingredientInfo.unit + " " + 
+                {{ingredientsData[i].ingredientInfo.quantity + " " +
+                ingredientsData[i].ingredientInfo.unit + " " +
                 ingredientsData[i].ingredientInfo.name}}
                 <br>
             </label>
             Number of portions: <input type="number" formControlName="portionSelect" />
             <br>
         <button mat-raised-button color="33FF68">Submit</button>
+        <mat-select formControlName="shoppingList" >
+                        <mat-option *ngFor="let list of shoppingListOptions" [value]="list.id">
+                            {{list.name}}
+                          </mat-option>
+                    </mat-select>
     </form>
 </div>

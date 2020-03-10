@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fetchRecipes } from '../store/recipeList.selector';
+import { fetchShoppingLists } from '../store/selectors/shopping.selector';
+
 import { Store, select } from '@ngrx/store';
 import { Recipe } from '../models/recipe';
 import { filter } from 'rxjs/operators';
@@ -26,6 +28,7 @@ export class RecipeDetailsComponent implements OnInit {
   ingredientsData;
   portionSelect;
   ingredientForm;
+  shoppingListOptions;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +36,8 @@ export class RecipeDetailsComponent implements OnInit {
     private formBuilder: FormBuilder) {
     this.ingredientForm = this.formBuilder.group({
       ingredients: new FormArray([]),
-      portionSelect: new FormControl(Number)
+      portionSelect: new FormControl(Number),
+      shoppingList: new FormControl(String)
     });
 
 
@@ -58,9 +62,7 @@ export class RecipeDetailsComponent implements OnInit {
     selectedIngredients.forEach( function(item){
         item.ingredientInfo.quantity *= portionFactor;
     })
-
-
-    this.store.dispatch(new AddRecipeAction("middag", selectedIngredients));
+    this.store.dispatch(new AddRecipeAction(this.ingredientForm.value.shoppingList, selectedIngredients));
     console.warn(selectedIngredients);
     console.warn("portionFactor: " + portionFactor);
     //TODO: Add store functionality for shpoping list and dispatch an action from here that updates the store
@@ -76,6 +78,9 @@ export class RecipeDetailsComponent implements OnInit {
           this.initializeForm();
         }
       });
+    });
+    this.store.pipe(select(fetchShoppingLists)).subscribe( arr => {
+      this.shoppingListOptions =  arr;
     });
   }
 

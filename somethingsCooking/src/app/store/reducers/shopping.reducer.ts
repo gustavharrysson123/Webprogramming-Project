@@ -34,7 +34,7 @@ export function ShoppingReducer(
     case ShoppingActionTypes.ADD_RECIPE:
       let temp = [];
       state.forEach( function(list){
-        if (list.name !== action.listId){
+        if (list.id !== action.listId){
           temp = [...temp, list];
         } else{
           let newIngredients = list.ShoppingList;

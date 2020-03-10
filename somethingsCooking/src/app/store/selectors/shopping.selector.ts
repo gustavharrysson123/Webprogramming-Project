@@ -3,16 +3,10 @@ import { pipe } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Ingredient } from '../../models/ingredient';
 import { ShoppingList } from '../../models/shoppinglist';
+import { AppState } from '../index';
 
 
-
-export interface AppState {
-    // selectedRecipe: Recipe;  Not yet implemented
-    shoppingLists: ShoppingList[];
-}
-
-
-export const fetchLists = (state: AppState) => {
+export const fetchShoppingLists = (state: AppState) => {
     return state.shoppingLists;
 }
 

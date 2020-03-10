@@ -4,7 +4,6 @@ import { Ingredient } from '../../models/ingredient';
 import { ShoppingList } from '../../models/shoppinglist';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { fetchLists } from '../../store/selectors/shopping.selector';
 import { SaveListAction, DeleteListAction, DeleteItemAction } from '../../store/actions/shopping.actions';
 import * as uuid from 'uuid';
 
