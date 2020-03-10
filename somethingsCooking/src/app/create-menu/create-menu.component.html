@@ -1,7 +1,7 @@
-<h1>Create a recipe</h1>
+<h1>Create a menu</h1>
 
 
-<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
     
     <mat-form-field appearance="fill" >
         <mat-label>Menu name</mat-label>
@@ -14,16 +14,20 @@
         <div    *ngFor="let item of recipes.controls; let recipeIndex=index" >
             <div [formGroupName]="recipeIndex" >
                 <mat-form-field appearance="fill">
-                    <mat-label>Recipe {{recipeIndex}}</mat-label>
-                    <input matInput type="select" formControlName="recipe">
+                    <mat-label>Recipe {{recipeIndex + 1}}</mat-label>
+                    <mat-select formControlName="recipe" >
+                        <mat-option *ngFor="let recipe of recipeOptions" [value]="recipe.recipe.id">
+                            {{recipe.recipe.recipeInfo.name}}
+                          </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
             <button button mat-stroked-button color="primary" type="button" (click)="deleteRecipe(recipeIndex)">Delete recipe</button>
         </div>
         <button mat-raised-button color="primary" type="button" (click)="addRecipe()">Add recipe</button>
     </div>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!recipeForm.valid">Submit</button>
+    <button mat-raised-button color="primary" type="submit" >Submit</button>
 
 </form>
 
-{{ this.recipeForm.value | json }}
+{{ this.menuForm.value | json }}

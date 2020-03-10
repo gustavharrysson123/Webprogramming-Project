@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { fetchRecipes } from '../store/recipeList.selector';
 import { Store, select } from '@ngrx/store'
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe';
@@ -14,21 +15,23 @@ import * as uuid from 'uuid';
 export class CreateMenuComponent implements OnInit {
 
   menu$: Observable<[Menu]>;
-  constructor(private fb: FormBuilder, private store: Store<{ menus: [Menu] }>) {
+  menuForm: FormGroup;
+  recipeGroup: FormGroup;
+  recipeOptions: Recipe[];
+  constructor(private fb: FormBuilder, private store: Store<{ menus: [Menu], recipes: [Recipe] }>) {
     this.menu$ = store.pipe(select('menus'));
    }
 
-  menuForm: FormGroup;
-  recipeGroup: FormGroup;
-
   ngOnInit(): void {
-    this.recipeGroup = this.fb.group({
-      name: '',
-      unit: '',
-      quantity: Number
-    })
+    this.store.pipe(select(fetchRecipes)).subscribe(recipes => {
+      if (recipes) {
+        this.recipeOptions = Array.from(recipes["recipes"]);
+        console.warn(this.recipeOptions);
+      }
+    });
+
     this.menuForm = this.fb.group({
-      menuName: [],
+      menuName: new FormControl,
       recipes: this.fb.array([this.fb.group({
         recipe: new FormControl(),
       })])
