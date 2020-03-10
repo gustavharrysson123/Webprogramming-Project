@@ -7,12 +7,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { ViewRecipesComponent } from './view-recipes/view-recipes.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component'
+import { CreateMenuComponent } from './create-menu/create-menu.component';
+import { ViewMenusComponent } from './view-menus/view-menus.component';
 
 
 const routes: Routes = [
   { path: "Create_Recipe", component: CreateRecipeComponent },
   { path: "View_Recipes", component: ViewRecipesComponent },
-  { path: "Menus", component: DummyComponent },
+  { path: "Create_Menu", component: CreateMenuComponent },
+  { path: "View_Menus", component: ViewMenusComponent },
   { path: "Shopping_List", component: ShoppingListComponent },
   { path: "Store_Test", component: StoreTestComponent },
   { path: "Recipe/:recipeId", component: RecipeDetailsComponent}

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RecipeReducer } from './store/recipeList.reducer';
+import { MenuReducer } from './store/menuList.reducer';
 import { ShoppingReducer } from './store/reducers/shopping.reducer';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,6 +38,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ViewRecipesComponent } from './view-recipes/view-recipes.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { CreateMenuComponent } from './create-menu/create-menu.component';
+import { ViewMenusComponent } from './view-menus/view-menus.component';
 
 
 
@@ -51,13 +54,16 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     ShoppingListComponent,
     AddItemComponent,
     ViewRecipesComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    CreateMenuComponent,
+    ViewMenusComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({
       recipes: RecipeReducer,
+      menus: MenuReducer,
       shoppingLists: ShoppingReducer
     }),
     BrowserAnimationsModule,
