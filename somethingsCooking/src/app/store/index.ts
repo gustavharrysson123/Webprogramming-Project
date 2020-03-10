@@ -1,11 +1,14 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import * as fromRecipes from './recipeList.reducer';
+import { RecipeReducer } from './recipeList.reducer';
+import { ShoppingReducer } from './reducers/shopping.reducer';
+import { ShoppingList } from '../models/shoppinglist';
+import { Recipe } from '../models/recipe';
+
+
 
 export interface AppState {
-    recipes: fromRecipes.State;
-}
+    readonly recipes: Array<Recipe>;
+    readonly shoppingLists: Array<ShoppingList>;
 
-export const reducers: ActionReducerMap<AppState> = {
-    recipes: fromRecipes.reducer
-};
+}

@@ -1,0 +1,16 @@
+button {
+  margin: 16px 8px;
+}
+mat-form-field {
+  margin: 16px 8px;
+}
+
+.mat-expansion-panel-header {
+  flex-basis: 0;
+}
+
+.header-align-right{
+  display: flex;
+  padding: 21px 0;
+  justify-content: flex-end;
+}

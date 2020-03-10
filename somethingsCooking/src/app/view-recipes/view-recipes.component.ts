@@ -14,14 +14,14 @@ export class ViewRecipesComponent implements OnInit {
   dataSource;
   columnsToDisplay = ['name', 'portions', 'category'];
 
-  constructor(private store: Store<{ recipes: [Recipe] }>) { 
-    
+  constructor(private store: Store<{ recipes: [Recipe] }>) {
+
   }
 
   ngOnInit(): void {
     this.store.pipe(select(fetchRecipes)).subscribe( arr => {
       this.recipes =  arr;
-      
+
       this.dataSource = new MatTableModule(this.recipes.recipes);
     });
   }

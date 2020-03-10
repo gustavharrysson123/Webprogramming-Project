@@ -4,14 +4,15 @@ import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { reducers } from './store/index';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { RecipeReducer } from './store/recipeList.reducer';
+import { ShoppingReducer } from './store/reducers/shopping.reducer';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatTableModule } from '@angular/material/table'; 
-import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -21,7 +22,12 @@ import { MatListModule } from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DummyComponent } from './dummy/dummy.component';
 import { StoreTestComponent } from './store-test/store-test.component';
- 
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
+import { AddItemComponent } from './components/add-item/add-item.component';
+
 import { MatDialogModule } from '@angular/material/dialog';
 //import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
@@ -42,13 +48,18 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     DummyComponent,
     StoreTestComponent,
     CreateRecipeComponent,
+    ShoppingListComponent,
+    AddItemComponent,
     ViewRecipesComponent,
     RecipeDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot({
+      recipes: RecipeReducer,
+      shoppingLists: ShoppingReducer
+    }),
     BrowserAnimationsModule,
     MatSidenavModule,
     MatMenuModule,
@@ -61,12 +72,14 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    
+
     MatDialogModule,
     MatSelectModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(reducers),
+    MatTabsModule,
+    MatExpansionModule,
+    MatInputModule,
     // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
