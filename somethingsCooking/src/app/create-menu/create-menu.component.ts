@@ -54,10 +54,13 @@ export class CreateMenuComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     let formValue = this.menuForm.value;
-    let recipes = formValue.recipes;
+    let recipes = formValue.recipes;    
+    console.warn("recipes for menu: ");
+    console.warn(recipes);
 
     let menu = <Menu> {
       id: uuid.v4(),
+      name: formValue.menuName,
       recipes: recipes    
     }
 

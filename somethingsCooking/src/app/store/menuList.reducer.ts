@@ -17,6 +17,6 @@ const _menuListReducer = createReducer(initialState,
   on(removeMenu, (state, { id }) => ({ menus: state.menus.filter(menu => menu.id !== id) }))
 );
 
-export function reducer(state, action) {
+export function MenuReducer(state, action) {
   return _menuListReducer(state, action);
 }
