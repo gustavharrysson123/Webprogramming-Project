@@ -12,6 +12,9 @@ import * as uuid from 'uuid';
   styleUrls: ['./create-recipe.component.css']
 })
 export class CreateRecipeComponent implements OnInit {
+  // OBS
+  imgURL: any;
+
   recipes$: Observable<[Recipe]>;
   constructor(private fb: FormBuilder, private store: Store<{ recipes: [Recipe] }>) {
     this.recipes$ = store.pipe(select('recipes'));
@@ -30,6 +33,8 @@ export class CreateRecipeComponent implements OnInit {
       recipeName: [],
       defaultPortions: [],
       category: [],
+      // OBS
+      image: null,
       ingredients: this.fb.array([this.fb.group({
         name: new FormControl(),
         unit: new FormControl(),
@@ -68,7 +73,9 @@ export class CreateRecipeComponent implements OnInit {
         name: formValue.recipeName,
         defaultPortions: formValue.defaultPortions,
         category: formValue.category,
-        ingredients: ingredients
+        ingredients: ingredients,
+        // OBS
+        image: this.imgURL
       }
     }
     this.store.dispatch({type: "[RecipeList] Add Recipe", recipe: {recipe}})
@@ -77,5 +84,14 @@ export class CreateRecipeComponent implements OnInit {
       
       console.warn(data) //your data shows here
       });
+  }
+
+  // OBS
+  onFileSelected(event){
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]); 
+    reader.onload = (_event) => { 
+      this.imgURL = reader.result; 
+    }
   }
 }

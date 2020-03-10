@@ -7,6 +7,8 @@ export interface Recipe {
       name: string;
       defaultPortions: number;
       category: string;
+      //OBS
+      image: File,
       ingredients: Ingredient[];
     };
   }

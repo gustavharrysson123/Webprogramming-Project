@@ -1,7 +1,13 @@
 <div *ngIf="recipe">
     <h1>{{recipe.recipeInfo.name}}</h1>
+
+    <div>
+        <img [src]="recipe.recipeInfo.image" height="200">
+    </div>
+    
     portions: {{recipe.recipeInfo.defaultPortions}}<br>
     category: {{recipe.recipeInfo.category}}
+
 
     <form [formGroup]="ingredientForm" (ngSubmit)="submit()">
             <label 
