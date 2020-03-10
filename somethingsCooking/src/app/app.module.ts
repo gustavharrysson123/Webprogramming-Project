@@ -31,6 +31,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ViewRecipesComponent } from './view-recipes/view-recipes.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { CreateMenuComponent } from './create-menu/create-menu.component';
 
 
 
@@ -43,7 +44,8 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
     StoreTestComponent,
     CreateRecipeComponent,
     ViewRecipesComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    CreateMenuComponent
   ],
   imports: [
     BrowserModule,

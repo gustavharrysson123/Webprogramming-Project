@@ -5,11 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { ViewRecipesComponent } from './view-recipes/view-recipes.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component'
+import { CreateMenuComponent } from './create-menu/create-menu.component';
 
 
 const routes: Routes = [
   { path: "Create_Recipe", component: CreateRecipeComponent },
   { path: "View_Recipes", component: ViewRecipesComponent },
+  { path: "Create_Menu", component: CreateMenuComponent },
   { path: "Menus", component: DummyComponent },
   { path: "Shopping_List", component: DummyComponent },
   { path: "Store_Test", component: StoreTestComponent },
