@@ -9,6 +9,7 @@ import { ViewRecipesComponent } from './view-recipes/view-recipes.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component'
 import { CreateMenuComponent } from './create-menu/create-menu.component';
 import { ViewMenusComponent } from './view-menus/view-menus.component';
+import { MenuDetailsComponent } from './menu-details/menu-details.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: "View_Menus", component: ViewMenusComponent },
   { path: "Shopping_List", component: ShoppingListComponent },
   { path: "Store_Test", component: StoreTestComponent },
-  { path: "Recipe/:recipeId", component: RecipeDetailsComponent}
+  { path: "Recipe/:recipeId", component: RecipeDetailsComponent},
+  { path: "Menu/:menuId", component: MenuDetailsComponent}
 
 ];
 
