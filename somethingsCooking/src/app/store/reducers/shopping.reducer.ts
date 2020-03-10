@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { ShoppingList } from '../../models/shoppinglist';
+import { Ingredient } from '../../models/ingredient';
 import { ShoppingListAction, ShoppingActionTypes } from '../actions/shopping.actions';
 
 
@@ -15,10 +16,10 @@ export function ShoppingReducer(
     case ShoppingActionTypes.DELETE_LIST:
       return state.filter(list => list.id !== action.id)
     case ShoppingActionTypes.DELETE_ITEM:
-      let temp = [];
+      let newState = [];
       state.forEach( function(list){
         if (list.id !== action.listId){
-          temp = [...temp, list];
+          newState = [...newState, list];
         } else{
           let tempList = [];
           list.ShoppingList.forEach( function(temp2){
@@ -26,10 +27,23 @@ export function ShoppingReducer(
               tempList = [...tempList, temp2];
             }
           })
-          temp = [...temp, {id: list.id, name: list.name, ShoppingList: tempList}];
+          newState = [...newState, {id: list.id, name: list.name, ShoppingList: tempList}];
         }
       })
-
+      return newState;
+    case ShoppingActionTypes.ADD_RECIPE:
+      let temp = [];
+      state.forEach( function(list){
+        if (list.name !== action.listId){
+          temp = [...temp, list];
+        } else{
+          let newIngredients = list.ShoppingList;
+          action.items.forEach( function(item){
+            newIngredients = [...newIngredients, item]
+          })
+          temp = [...temp, {id: list.id, name: list.name, ShoppingList: newIngredients}];
+        }
+      })
 
       return temp;
     default:

@@ -1,10 +1,12 @@
 import { Action } from '@ngrx/store';
 import { ShoppingList } from '../../models/shoppinglist';
+import { Ingredient } from '../../models/ingredient';
 
 export enum ShoppingActionTypes{
   SAVE_LIST = '[SHOPPINGLIST] Save List',
   DELETE_LIST = '[SHOPPINGLIST] Delete List',
   DELETE_ITEM = '[SHOPPINGLIST] Delete Item',
+  ADD_RECIPE = '[SHOPPINGLIST] Add Recipe',
 }
 
 export class SaveListAction implements Action{
@@ -25,4 +27,10 @@ export class DeleteItemAction implements Action{
   constructor(public itemId: string, public listId: string) {}
 }
 
-export type ShoppingListAction = SaveListAction | DeleteListAction | DeleteItemAction;
+export class AddRecipeAction implements Action{
+  readonly type = ShoppingActionTypes.ADD_RECIPE;
+
+  constructor(public listId: string, public items: Array<Ingredient>) {}
+}
+
+export type ShoppingListAction = SaveListAction | DeleteListAction | DeleteItemAction | AddRecipeAction;

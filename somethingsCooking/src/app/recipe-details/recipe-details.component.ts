@@ -6,6 +6,9 @@ import { Recipe } from '../models/recipe';
 import { filter } from 'rxjs/operators';
 import { FormBuilder, FormArray, FormControl } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import { AppState } from '../store/index';
+import { AddRecipeAction } from '../store/actions/shopping.actions';
+import { Ingredient } from '../models/ingredient';
 
 
 
@@ -26,19 +29,19 @@ export class RecipeDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private store: Store<{ recipes: [Recipe] }>,
+    private store: Store<AppState>,
     private formBuilder: FormBuilder) {
     this.ingredientForm = this.formBuilder.group({
       ingredients: new FormArray([]),
       portionSelect: new FormControl(Number)
     });
 
-    
+
   }
 
   private initializeForm() {
     this.ingredientsData.forEach((o, i) => {
-      const control = new FormControl(true); 
+      const control = new FormControl(true);
       (this.ingredientForm.controls.ingredients as FormArray).push(control);
     });
   }
@@ -51,6 +54,13 @@ export class RecipeDetailsComponent implements OnInit {
       filter( ingredient => selectedIngredientIds.includes(ingredient.id))
     const selectedPortions = this.ingredientForm.value.portionSelect;
     const portionFactor = selectedPortions / this.recipe.recipeInfo.defaultPortions;
+
+    selectedIngredients.forEach( function(item){
+        item.ingredientInfo.quantity *= portionFactor;
+    })
+
+
+    this.store.dispatch(new AddRecipeAction("middag", selectedIngredients));
     console.warn(selectedIngredients);
     console.warn("portionFactor: " + portionFactor);
     //TODO: Add store functionality for shpoping list and dispatch an action from here that updates the store
