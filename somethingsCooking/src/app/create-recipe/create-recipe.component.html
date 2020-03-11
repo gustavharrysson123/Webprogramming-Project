@@ -1,7 +1,7 @@
 <h1>Create a recipe</h1>
 
 
-<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+<form #submitForm="ngForm" [formGroup]="recipeForm" (ngSubmit)="onSubmit(); submitForm.reset()">
     
     <mat-form-field appearance="fill" >
         <mat-label>Recipe Name</mat-label>
@@ -23,9 +23,6 @@
     
     <input style="display: none" type="file" (change)="onFileSelected($event)" accept="image/*" #PictureInput />
     <button button mat-stroked-button color="primary" type="button" (click)="PictureInput.click()">Add Picture</button>
-    <div>
-        <img [src]="imgURL" height="200" *ngIf="imgURL">
-    </div>
     
 
 

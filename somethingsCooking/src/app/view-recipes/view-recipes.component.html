@@ -1,7 +1,18 @@
-<mat-table [dataSource]="dataSource">
+
+
+
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Desserts">
+  </mat-form-field>
+    
+  
+
+<mat-table [dataSource]="dataSource" ng-repeat="recipe in recipes | orderBy:'category'">
     <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let recipe"> {{recipe.recipe.recipeInfo.name}} 
+        <mat-cell *matCellDef="let recipe"> {{recipe.recipe.recipeInfo.name}}
             <a fxFlexFill [routerLink]="'/Recipe/'+recipe.recipe.id" class="mat-row-link"></a>
         </mat-cell>
     </ng-container>
@@ -11,7 +22,7 @@
         <mat-cell *matCellDef="let recipe"> {{recipe.recipe.recipeInfo.defaultPortions}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="category">
+    <ng-container matColumnDef="category" >
         <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
         <mat-cell *matCellDef="let recipe"> {{recipe.recipe.recipeInfo.category}} </mat-cell>
     </ng-container>
@@ -19,3 +30,6 @@
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
 </mat-table>
+
+
+
