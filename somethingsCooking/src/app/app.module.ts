@@ -23,19 +23,16 @@ import { MatListModule } from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DummyComponent } from './dummy/dummy.component';
 import { StoreTestComponent } from './store-test/store-test.component';
-<<<<<<< HEAD
-//import {MatTableDataSource} from '@angular/material/table';
+// import {MatTableDataSource} from '@angular/material/table';
  
-=======
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import { AddItemComponent } from './components/add-item/add-item.component';
 
->>>>>>> 2255878aa5ae8ba61ff8973ff19d815691f33643
 import { MatDialogModule } from '@angular/material/dialog';
-//import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
@@ -85,12 +82,8 @@ import { MenuDetailsComponent } from './menu-details/menu-details.component';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-<<<<<<< HEAD
-    //MatTableDataSource,
+    // MatTableDataSource,
     
-=======
-
->>>>>>> 2255878aa5ae8ba61ff8973ff19d815691f33643
     MatDialogModule,
     MatSelectModule,
     MatFormFieldModule,
