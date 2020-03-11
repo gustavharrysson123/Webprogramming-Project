@@ -21,11 +21,15 @@
             </label>
             Number of portions: <input type="number" formControlName="portionSelect" />
             <br>
-        <button mat-raised-button color="33FF68">Submit</button>
-        <mat-select formControlName="shoppingList" >
+        <button class="button-spacing" mat-raised-button color="33FF68">Submit</button>
+        <mat-form-field>
+            <mat-label>Add to list</mat-label>
+            <mat-select formControlName="shoppingList" >
                         <mat-option *ngFor="let list of shoppingListOptions" [value]="list.id">
                             {{list.name}}
-                          </mat-option>
-                    </mat-select>
+                        </mat-option>
+            </mat-select>
+        </mat-form-field>
+
     </form>
 </div>
