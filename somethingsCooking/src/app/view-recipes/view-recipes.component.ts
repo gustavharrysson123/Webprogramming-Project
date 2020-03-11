@@ -30,8 +30,8 @@ export class ViewRecipesComponent implements OnInit {
     {name: 'Others'},
   ];
 
-  constructor(private store: Store<{ recipes: [Recipe] }>) { 
-    
+  constructor(private store: Store<{ recipes: [Recipe] }>) {
+
   }
 
   ngOnInit(): void {

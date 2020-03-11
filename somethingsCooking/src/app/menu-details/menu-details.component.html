@@ -1,0 +1,13 @@
+<div *ngIf="menu">
+    <h1>{{menu.name}}</h1>
+    <br>
+    <h2>Recipes included in menu</h2>
+    <div >
+        <ul>
+            <li *ngFor="let recipe of recipes">
+                <a [routerLink]="'/Recipe/'+recipe.recipe.id">{{recipe.recipe.recipeInfo.name}}</a>
+            </li>
+          </ul>
+        
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<h1>Create a menu</h1>
+
+
+<form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+    
+    <mat-form-field appearance="fill" >
+        <mat-label>Menu name</mat-label>
+        <input matInput formControlName="menuName" />
+    </mat-form-field>
+    
+    <h2>Add Recipes</h2>
+
+    <div formArrayName="recipes">
+        <div    *ngFor="let item of recipes.controls; let recipeIndex=index" >
+            <div [formGroupName]="recipeIndex" >
+                <mat-form-field appearance="fill">
+                    <mat-label>Recipe {{recipeIndex + 1}}</mat-label>
+                    <mat-select formControlName="recipe" >
+                        <mat-option *ngFor="let recipe of recipeOptions" [value]="recipe.recipe.id">
+                            {{recipe.recipe.recipeInfo.name}}
+                          </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <button button mat-stroked-button color="primary" type="button" (click)="deleteRecipe(recipeIndex)">Delete recipe</button>
+        </div>
+        <button mat-raised-button color="primary" type="button" (click)="addRecipe()">Add recipe</button>
+    </div>
+    <button mat-raised-button color="primary" type="submit" >Submit</button>
+
+</form>
+
+{{ this.menuForm.value | json }}

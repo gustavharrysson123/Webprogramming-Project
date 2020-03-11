@@ -6,4 +6,13 @@ h2 {
   color: rgb(11, 11, 175);
 }
 
-  
+.button-spacing{
+  margin-top: 10px;
+}
+
+.mat-icon-button{
+    height:48px !important;
+    width:48px !important;
+    font-size:48px !important;
+}
+

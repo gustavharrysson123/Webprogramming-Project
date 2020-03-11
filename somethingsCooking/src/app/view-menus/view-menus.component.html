@@ -1,0 +1,12 @@
+<mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let menu">
+            <a fxFlexFill [routerLink]="'/Menu/'+menu.menu.id" class="mat-row-link">
+                {{menu.menu.name}} 
+            </a>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+</mat-table>
