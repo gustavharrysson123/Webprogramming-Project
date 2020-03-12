@@ -5,6 +5,11 @@ import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe';
 import { Ingredient } from '../models/ingredient';
 import * as uuid from 'uuid';
+import { Router } from '@angular/router';
+
+interface Different {
+  name: string;
+}
 
 @Component({
   selector: 'app-create-recipe',
@@ -15,8 +20,18 @@ export class CreateRecipeComponent implements OnInit {
   // OBS
   imgURL: any;
 
+  categories: Different[] = [
+    {name: 'Appetizers'},
+    {name: 'Main Dishes'},
+    {name: 'Breads'},
+    {name: 'Desserts'},
+    {name: 'Soups'},
+    {name: 'Salads'},
+    {name: 'Others'},
+  ];
+
   recipes$: Observable<[Recipe]>;
-  constructor(private fb: FormBuilder, private store: Store<{ recipes: [Recipe] }>) {
+  constructor(private fb: FormBuilder, private store: Store<{ recipes: [Recipe] }>, private router:Router) {
     this.recipes$ = store.pipe(select('recipes'));
    }
 
@@ -41,7 +56,9 @@ export class CreateRecipeComponent implements OnInit {
         quantity: new FormControl(),
       })])
     })
+    
   }
+
   get ingredients() {
     return this.recipeForm.get('ingredients') as FormArray;
   }
@@ -55,6 +72,7 @@ export class CreateRecipeComponent implements OnInit {
   deleteIngredient(index) {
     this.ingredients.removeAt(index);
   }
+
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
@@ -84,7 +102,11 @@ export class CreateRecipeComponent implements OnInit {
       
       console.warn(data) //your data shows here
       });
+      
+      // OBS to view recipes in order to reset the image, remove the other reset functions? 
+      this.router.navigate(['/View_Recipes']);
   }
+
 
   // OBS
   onFileSelected(event){

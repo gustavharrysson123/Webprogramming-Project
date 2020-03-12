@@ -1,15 +1,14 @@
 
-
-
-
-<mat-form-field>
+  <mat-form-field>
     <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Desserts">
+    <mat-select (selectionChange)="applyFilter($event.value)">
+      <mat-option *ngFor="let category of categories" [value]="category.name">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
-    
   
-
-<mat-table [dataSource]="dataSource" ng-repeat="recipe in recipes | orderBy:'category'">
+  <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let recipe"> {{recipe.recipe.recipeInfo.name}}
@@ -30,9 +29,3 @@
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
 </mat-table>
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 2255878aa5ae8ba61ff8973ff19d815691f33643

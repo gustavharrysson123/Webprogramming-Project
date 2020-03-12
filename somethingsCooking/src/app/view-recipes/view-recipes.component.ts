@@ -5,10 +5,10 @@ import { MatTableModule } from './recipe-data-source';
 //import {MatTableDataSource} from '@angular/material/table'
 import { Recipe } from '../models/recipe';
 
-
 interface Different {
   name: string;
 }
+
 
 @Component({
   selector: 'app-view-recipes',
@@ -30,41 +30,22 @@ export class ViewRecipesComponent implements OnInit {
     {name: 'Others'},
   ];
 
-  constructor(private store: Store<{ recipes: [Recipe] }>) {
-
-  }
+  constructor(private store: Store<{ recipes: [Recipe] }>) {}
 
   ngOnInit(): void {
     this.store.pipe(select(fetchRecipes)).subscribe( arr => {
       this.recipes =  arr;
 
-      this.dataSource = new MatTableModule(this.recipes.recipes);
-      console.log(this.recipes);
+      const RECIPE_DATA: Recipe[] = this.recipes.recipes;
+      this.dataSource = new MatTableModule(RECIPE_DATA);
+
+      this.dataSource.filterPredicate = (data, filter: string) => {
+        return data.recipe.recipeInfo.category.startsWith(filter);
+       };
     });
-
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue;
   }
-
 }
-
-// https://material.angular.io/components/table/overview
-// https://stackblitz.com/edit/angular-5hcooj?file=app%2Ftable-filtering-example.ts
-
-// <tr ng-repeat="recipe in recipes | filter:selectedCategory">
-
-/**<mat-option *ngFor="let category of categories" [value]="category.name">
-      {{category.name}}
-    </mat-option> */
-
-    /**<mat-form-field>
-  <mat-label>Select a Category</mat-label>
-  <mat-select ng-model="selectedCategory" name="selectedCategory" (change)="Selected()">
-    <mat-option *ngFor="let category of categories" [value]="category.name">
-      {{category.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field> */

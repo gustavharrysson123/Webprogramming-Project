@@ -1,13 +1,8 @@
 <h1>Create a recipe</h1>
 
 
-<<<<<<< HEAD
 <form #submitForm="ngForm" [formGroup]="recipeForm" (ngSubmit)="onSubmit(); submitForm.reset()">
     
-=======
-<form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-
->>>>>>> 2255878aa5ae8ba61ff8973ff19d815691f33643
     <mat-form-field appearance="fill" >
         <mat-label>Recipe Name</mat-label>
         <input matInput formControlName="recipeName" />
@@ -20,22 +15,22 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Category</mat-label>
-        <input matInput formControlName="category" />
-    </mat-form-field>
+        <mat-select formControlName="category">
+          <mat-option *ngFor="let category of categories" [value]="category.name">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
 
     <h2>Add Image</h2>
 
     <input style="display: none" type="file" (change)="onFileSelected($event)" accept="image/*" #PictureInput />
     <button button mat-stroked-button color="primary" type="button" (click)="PictureInput.click()">Add Picture</button>
-<<<<<<< HEAD
-    
-=======
+
     <div>
         <img [src]="imgURL" height="200" *ngIf="imgURL">
     </div>
-
->>>>>>> 2255878aa5ae8ba61ff8973ff19d815691f33643
 
 
     <h2>Add Ingredients</h2>
@@ -67,4 +62,4 @@
 
 </form>
 
-{{ this.recipeForm.value | json }}
+<!--{{ this.recipeForm.value | json }}-->
