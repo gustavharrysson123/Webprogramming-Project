@@ -4,7 +4,7 @@
 <form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
     
     <mat-form-field appearance="fill" >
-        <mat-label>Menu name</mat-label>
+        <mat-label>Menu name</mat-label> 
         <input matInput formControlName="menuName" />
     </mat-form-field>
     
@@ -30,4 +30,4 @@
 
 </form>
 
-{{ this.menuForm.value | json }}
+<!--{{ this.menuForm.value | json }}--> 

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe';
 import { Menu } from '../models/menu'
 import * as uuid from 'uuid';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-menu',
@@ -18,7 +19,7 @@ export class CreateMenuComponent implements OnInit {
   menuForm: FormGroup;
   recipeGroup: FormGroup;
   recipeOptions: Recipe[];
-  constructor(private fb: FormBuilder, private store: Store<{ menus: [Menu], recipes: [Recipe] }>) {
+  constructor(private fb: FormBuilder, private store: Store<{ menus: [Menu], recipes: [Recipe] }>, private router:Router) {
     this.menu$ = store.pipe(select('menus'));
    }
 
@@ -65,6 +66,9 @@ export class CreateMenuComponent implements OnInit {
     }
 
     this.store.dispatch({type: "[MenuList] Add Menu", menu: {menu}})
+
+    this.router.navigate(['/View_Menus']);
+    
   }
 
 }

@@ -17,7 +17,6 @@ interface Different {
   styleUrls: ['./create-recipe.component.css']
 })
 export class CreateRecipeComponent implements OnInit {
-  // OBS
   imgURL: any;
 
   categories: Different[] = [
@@ -34,7 +33,7 @@ export class CreateRecipeComponent implements OnInit {
   constructor(private fb: FormBuilder, private store: Store<{ recipes: [Recipe] }>, private router:Router) {
     this.recipes$ = store.pipe(select('recipes'));
    }
-
+ 
   recipeForm: FormGroup;
   ingredientGroup: FormGroup;
 
@@ -48,7 +47,6 @@ export class CreateRecipeComponent implements OnInit {
       recipeName: [],
       defaultPortions: [],
       category: [],
-      // OBS
       image: null,
       ingredients: this.fb.array([this.fb.group({
         name: new FormControl(),
@@ -92,7 +90,6 @@ export class CreateRecipeComponent implements OnInit {
         defaultPortions: formValue.defaultPortions,
         category: formValue.category,
         ingredients: ingredients,
-        // OBS
         image: this.imgURL
       }
     }
@@ -102,13 +99,10 @@ export class CreateRecipeComponent implements OnInit {
       
       console.warn(data) //your data shows here
       });
-      
-      // OBS to view recipes in order to reset the image, remove the other reset functions? 
+       
       this.router.navigate(['/View_Recipes']);
   }
 
-
-  // OBS
   onFileSelected(event){
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]); 

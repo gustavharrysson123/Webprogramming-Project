@@ -22,7 +22,6 @@ import { Ingredient } from '../models/ingredient';
   styleUrls: ['./recipe-details.component.css']
 })
 
-// See https://coryrylan.com/blog/creating-a-dynamic-checkbox-list-in-angular
 export class RecipeDetailsComponent implements OnInit {
   recipe;
   ingredientsData;
@@ -65,7 +64,6 @@ export class RecipeDetailsComponent implements OnInit {
     this.store.dispatch(new AddRecipeAction(this.ingredientForm.value.shoppingList, selectedIngredients));
     console.warn(selectedIngredients);
     console.warn("portionFactor: " + portionFactor);
-    //TODO: Add store functionality for shpoping list and dispatch an action from here that updates the store
   }
 
   ngOnInit() {
